@@ -35,6 +35,9 @@ AWS:
 - Gradle
 - Eclipse
 
+
+<img width="400" alt="Screen Shot 2023-01-21 at 3 15 03 PM" src="https://user-images.githubusercontent.com/113144309/213889053-9b3885da-1314-4da8-a437-7837a69f96c2.png">
+
 # Lessons Learned
 - This was my first time really building out a more detailed DB layout in MySQL. Initially I became really invested and made multiple different entities which would require more complex mapping than was within the scope of this project. I decided to instead focus and make sure I understood the process of what was happening before I expanded on what I had built.
 - Happy to say that I am starting to prioritizing naming conventions in a way that is easy to recall and easier to trouble shoot. That has been a focus of several of the last projects and as they scale in size something I want to have engrained into my practice. 
