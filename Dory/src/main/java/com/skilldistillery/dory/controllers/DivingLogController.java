@@ -74,9 +74,9 @@ public class DivingLogController {
 	}
 
 	@DeleteMapping("divinglogs/{id}")
-	public void delete(@PathVariable Integer logId, HttpServletResponse res) {
+	public void delete(@PathVariable Integer id, HttpServletResponse res) {
 		try {
-			if (logService.deleteByID(logId)) {
+			if (logService.deleteByID(id)) {
 				res.setStatus(204);
 			} else {
 				res.setStatus(404);
