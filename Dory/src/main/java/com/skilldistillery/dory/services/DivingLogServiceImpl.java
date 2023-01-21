@@ -18,7 +18,6 @@ public class DivingLogServiceImpl implements DivingLogService{
 	
 	@Override
 	public List<DivingLog> allDivingLogs() {
-		// TODO Auto-generated method stub
 		return logRepo.findAll();
 	}
 
@@ -34,14 +33,26 @@ public class DivingLogServiceImpl implements DivingLogService{
 
 	@Override
 	public DivingLog createLog(DivingLog log) {
-	
 		return logRepo.saveAndFlush(log);
 	}
 
 	@Override
 	public DivingLog updateLog(int id, DivingLog log) {
-		// TODO Auto-generated method stub
-		return null;
+		DivingLog logUpdate = getLog(id);
+		logUpdate.setSiteName(log.getSiteName());
+		logUpdate.setSiteLocation(log.getSiteLocation());
+		logUpdate.setDate(log.getDate());
+		logUpdate.setMaxDepth(log.getMaxDepth());
+		logUpdate.setVisibility(log.getVisibility());
+		logUpdate.setDiveStart(log.getDiveStart());
+		logUpdate.setDiveEnd(log.getDiveEnd());
+		logUpdate.setTotalTime(log.getTotalTime());
+		logUpdate.setWeightAmount(log.getWeightAmount());
+		logUpdate.setSafetyStop(log.getSafetyStop());
+		logUpdate.setNotes(log.getNotes());
+		logUpdate.setImageUrl(log.getImageUrl());
+		return logRepo.save(logUpdate);
+		
 	}
 
 	@Override
