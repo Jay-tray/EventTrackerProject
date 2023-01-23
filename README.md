@@ -7,7 +7,7 @@ I started by building a database through MySQL workbench and creating appropriat
 After I was satisfied with the database I built out the Diving Log entity and proceeded with Spring Boot logic building the service, serviceImpl and controller. To ensure everything was working I tested using Postman.
 
 To view please follow this link:
-AWS: http://18.233.209.105:8085/Dory
+AWS: http://18.233.209.105:8080/Dory/api/divinglogs
 
 
 

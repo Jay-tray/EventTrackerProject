@@ -45,7 +45,7 @@ class DivingLogTest {
 	@Test
 	void test() {
 		assertNotNull(divingLog);
-		assertEquals("test", divingLog.getSiteName());
+		assertEquals("Two Towers", divingLog.getSiteName());
 
 	}
 
