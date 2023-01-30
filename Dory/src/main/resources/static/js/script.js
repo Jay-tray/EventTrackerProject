@@ -33,8 +33,13 @@ function init() {
 		loadDivingLogs(divingLogs);
 
 	});
+	
+
 
 }
+
+
+
 
 function addDive(newDive) {
 	let xhr = new XMLHttpRequest();
@@ -56,6 +61,11 @@ function addDive(newDive) {
 }
 
 
+function displayError(message) {
+	let div = document.getElementById('diveData')
+	div.textContent = message;
+	}
+
 
 function getDive(diveId) {
 	console.log(diveId)
@@ -66,8 +76,10 @@ function getDive(diveId) {
 			if (xhr.status === 200) {
 				let dive = JSON.parse(xhr.responseText);
 				displayDiveLog(dive);
+			} else if (xhr.status === 404) {
+				displayError("ERROR: Event not found. Please search for another dive!");
 			} else {
-				displayError('Dive not found')
+				console.log(xhr.status);
 			}
 		}
 	};
@@ -81,7 +93,7 @@ function displayDiveLog(dive) {
 	diveDataDiv.textContent = '';
 	let id = document.createElement('div');
 	id.textContent = dive.id;
-	id.style.dispay = 'none';
+	id.style.display="none";
 	diveDataDiv.append(id);
 	let h1 = document.createElement('h1');
 	h1.textContent = dive.siteName;
@@ -113,14 +125,21 @@ function displayDiveLog(dive) {
 	deleteBtn.value = 'Delete';
 	deleteBtn.addEventListener('click', deleteDiveButton);
 	li.appendChild(deleteBtn);
-	
+
 
 	let edit = document.createElement("input");
-	edit.type="button";
-	edit.name="edit";
-	edit.value="Edit";
+	edit.type = "button";
+	edit.name = "edit";
+	edit.value = "Edit";
 	edit.addEventListener('click', updateDiveLogForm);
 	li.append(edit);
+	
+	let totalTime = document.createElement("input");
+	totalTime.type = "button";
+	totalTime.name = "totalTime";
+	totalTime.value = "Total Dive time";
+	totalTime.addEventListener('click', totalDiveTime);
+	li.append(totalTime);
 }
 
 function loadDivingLogs() {
@@ -130,7 +149,7 @@ function loadDivingLogs() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
-			let	divingLogs = JSON.parse(xhr.responseText);
+				let divingLogs = JSON.parse(xhr.responseText);
 				console.log(divingLogs);
 				displayDivingLogs(divingLogs);
 			}
@@ -153,7 +172,7 @@ function displayDivingLogs(divingLogs) {
 
 //CREATE TABLE
 let createTable = function(divingLogs) {
-	console.log('creating tbale')
+	console.log('creating table')
 	console.log(divingLogs)
 	let diveOutput = document.getElementById('output');
 	diveOutput.textContent = '';
@@ -235,19 +254,19 @@ let createBody = function(table, divingLogs) {
 		//deleteBtn.addEventListener('click', deleteDive);
 
 		//editBtn.addEventListener('click', function(evt) {
-			//evt.preventDefault();
-			//updateDivingLog.style.display = "initial";
-			//newDivingLog.style.display = "none";
-			//console.log(divingLogs)
-			// Send the object to update function
-			//updateDiveLogEvent();
+		//evt.preventDefault();
+		//updateDivingLog.style.display = "initial";
+		//newDivingLog.style.display = "none";
+		//console.log(divingLogs)
+		// Send the object to update function
+		//updateDiveLogEvent();
 
 		//});
 
 
 		//trow.appendChild(editBtn);
 		//trow.appendChild(deleteBtn);
-	
+
 	});
 }
 
@@ -256,9 +275,9 @@ function getDiveId(id) {
 	console.log('Getting Dive ID: ')
 	console.log("id is: " + id)
 	xhr.open("GET", "api/divinglogs/" + id);
-	
+
 	xhr.onreadystatechange = function() {
-		if ( xhr.readyState === 4 ) {
+		if (xhr.readyState === 4) {
 			if (xhr.status === 200) {
 				let dive = JSON.parse(xhr.responseText);
 				updateDiveLogInfo(dive);
@@ -267,11 +286,11 @@ function getDiveId(id) {
 			}
 		}
 	};
-	
+
 	xhr.send();
-	
-	
-	
+
+
+
 };
 
 
@@ -285,12 +304,12 @@ function updateDiveLogForm() {
 	getDiveId(id);
 	console.log('test')
 	console.log(id);
-	
+
 	let hiddenId = document.createElement("div");
 	hiddenId.textContent = id;
-	hiddenId.style.display="none";
+	hiddenId.style.display = "none";
 	console.log(id);
-	
+
 	let editForm = document.createElement("form");
 	let siteName = document.createElement("input");
 	let siteLocation = document.createElement("input");
@@ -298,27 +317,27 @@ function updateDiveLogForm() {
 	let visibility = document.createElement("input");
 	let diveStart = document.createElement("input");
 	let diveEnd = document.createElement("input");
-	
+
 	let submit = document.createElement("button");
-	
-	
-	editForm.name="editForm";
-	siteName.type="text";
-	siteName.name="siteName";
+
+
+	editForm.name = "editForm";
+	siteName.type = "text";
+	siteName.name = "siteName";
 	siteLocation.type = "text;"
-	siteLocation.name= "siteLocation"
-	date.type="date";
-	date.name="date";
-	visibility.type="text";
-	visibility.name="visibility";
-	diveStart.type="time";
-	diveStart.name="diveStart";
-	diveEnd.type='time';
-	diveEnd.name='diveEnd';
-	submit.name= "submit";
-	submit.value="Submit";
-	submit.innerHTML="Submit"
-	
+	siteLocation.name = "siteLocation"
+	date.type = "date";
+	date.name = "date";
+	visibility.type = "text";
+	visibility.name = "visibility";
+	diveStart.type = "time";
+	diveStart.name = "diveStart";
+	diveEnd.type = 'time';
+	diveEnd.name = 'diveEnd';
+	submit.name = "submit";
+	submit.value = "Submit";
+	submit.innerHTML = "Submit"
+
 	editForm.appendChild(hiddenId);
 	console.log('after hiddenId')
 	console.log(id)
@@ -330,57 +349,57 @@ function updateDiveLogForm() {
 	editForm.appendChild(diveEnd);
 	editForm.appendChild(submit);
 	div.appendChild(editForm);
-	
+
 	for (input of editForm) {
 		let br = document.createElement('br');
 		input.after(br);
 	}
-	
- }
- 
- function updateDiveLogInfo(dive) {
-	 console.log('updateDiveLogInfo')
-	 console.log(dive)
-	 console.log(dive.id)
-	 let form = document.editForm;
-	 form.siteName.value = dive.siteName;
-	 form.siteLocation.value = dive.siteLocation;
-	 form.date.value = dive.date;
-	 form.visibility.value = dive.visibility;
-	 form.diveStart.value = dive.diveStart;
-	 form.diveEnd.value = dive.diveEnd;
-	 
-	 
-	 form.submit.addEventListener('click', updateDiveLog);
- }
+
+}
+
+function updateDiveLogInfo(dive) {
+	console.log('updateDiveLogInfo')
+	console.log(dive)
+	console.log(dive.id)
+	let form = document.editForm;
+	form.siteName.value = dive.siteName;
+	form.siteLocation.value = dive.siteLocation;
+	form.date.value = dive.date;
+	form.visibility.value = dive.visibility;
+	form.diveStart.value = dive.diveStart;
+	form.diveEnd.value = dive.diveEnd;
+
+
+	form.submit.addEventListener('click', updateDiveLog);
+}
 
 function updateDiveLog(e) {
 	e.preventDefault();
 	console.log('updateDiveLog')
 	let editForm = document.editForm;
-	
-	let id = editForm.firstElementChild.textcontext;
-		console.log(id);
+
+	let id = editForm.firstElementChild.textContent;
+	console.log(id);
 	let dive = {
 		siteName: editForm.siteName.value,
 		siteLocation: editForm.siteLocation.value,
 		date: editForm.date.value,
-		visibility: editForm.visibility. value,
+		visibility: editForm.visibility.value,
 		diveStart: editForm.diveStart.value,
 		diveEnd: editForm.diveEnd.value
 	}
 	console.log(JSON.stringify(dive));
-	
+
 	let xhr = new XMLHttpRequest();
-	
+
 	xhr.open(`PUT`, 'api/divinglogs/' + id);
 	console.log(id);
-	
+
 	xhr.setRequestHeader("Content-Type", "Application/JSON");
-	
+
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4) {
-			if (xhr.status === 204) {
+			if (xhr.status === 200) {
 				let update = "The diving log has been updated!";
 				alert(update);
 			} else {
@@ -388,27 +407,33 @@ function updateDiveLog(e) {
 			}
 		}
 	}
-	
 
-	
+
+
 	xhr.send(JSON.stringify(dive));
 }
 
 
 function deleteDiveButton() {
-console.log('deletedivebuttonn')
-	let id = document.getElementById("displayDiveLog").firstElementChild.textContent;
+	console.log('deletedivebutton')
+	let id = document.getElementById("diveData").firstElementChild.textContent;
 	console.log('id is: ' + id);
 	deleteDive(id);
 }
 
+function totalDiveTime() {
+	console.log('totalDiveTime')
+	let id = document.getElementById("diveData").firstElementChild.textContent;
+	let totalTime = id.diveEnd - id.diveStart;
+		console.log(totalTime);
+	}
 
 function deleteDive(id) {
 	console.log('In delete');
 
 	let xhr = new XMLHttpRequest();
 
-	xhr.open('DELETE', 'api/divingLogs/' + id);
+	xhr.open('DELETE', 'api/divinglogs/' + id);
 	console.log('Id is: ')
 	console.log(id)
 
@@ -424,3 +449,5 @@ function deleteDive(id) {
 
 	xhr.send();
 }
+
+
