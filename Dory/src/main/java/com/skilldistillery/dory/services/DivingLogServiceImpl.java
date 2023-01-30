@@ -42,15 +42,15 @@ public class DivingLogServiceImpl implements DivingLogService{
 		logUpdate.setSiteName(log.getSiteName());
 		logUpdate.setSiteLocation(log.getSiteLocation());
 		logUpdate.setDate(log.getDate());
-		logUpdate.setMaxDepth(log.getMaxDepth());
+		//logUpdate.setMaxDepth(log.getMaxDepth());
 		logUpdate.setVisibility(log.getVisibility());
 		logUpdate.setDiveStart(log.getDiveStart());
 		logUpdate.setDiveEnd(log.getDiveEnd());
-		logUpdate.setTotalTime(log.getTotalTime());
-		logUpdate.setWeightAmount(log.getWeightAmount());
-		logUpdate.setSafetyStop(log.getSafetyStop());
-		logUpdate.setNotes(log.getNotes());
-		logUpdate.setImageUrl(log.getImageUrl());
+		//logUpdate.setTotalTime(log.getTotalTime());
+		//logUpdate.setWeightAmount(log.getWeightAmount());
+		//logUpdate.setSafetyStop(log.getSafetyStop());
+		//logUpdate.setNotes(log.getNotes());
+		//logUpdate.setImageUrl(log.getImageUrl());
 		return logRepo.save(logUpdate);
 		
 	}

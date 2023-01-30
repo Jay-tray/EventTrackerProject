@@ -6,6 +6,68 @@
 <script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
-<h1>Youll insert a log here</h1>
+<h1>Welcome to Dory, track your dives here!</h1>
+
+	<h3>Look up a specific dive</h3>
+	<form name="diveForm">
+		<input type="number" name="diveId">
+		<button name="lookup">Get Dive by Id</button>
+	</form>
+	<br>
+	
+
+	
+	<form name="diveLoadForm">
+		<button name="diveLoad">Load All Dives</button><br>
+	</form>
+	<br>
+	<br>
+		
+		<div id="diveData"></div>
+	
+		
+		<div id="output"></div>
+	<br>
+<!-- 	<form name="updateDivingLog" style = "display:none">
+		<label><strong>Update your dive!</strong></label><br>
+		<input type="hidden" name="id"><br>
+		<label for = "siteName">Site Name</label>
+		<input type="text" name="siteName" placeholder= "Site Name">  <br>
+		<label for = "siteLocation">Site Location</label>
+		<input type="text" name="siteLocation" placeholder= "Site Location"> <br>
+		<label for = "date">Date</label>
+		<input type="date" name="date" placeholder= "2022-08-23"><br>
+		<label for = "visibilty">Visibility</label>
+		<input type="text" name="visibility" placeholder= "Visibility"><br>
+		<label for = "diveStart">Dive Start</label>
+		<input type="time" name="diveStart" placeholder= "10:00:00"><br>
+		<label for = "diveEnd">Dive End</label>
+		<input type="time" name="diveEnd" placeholder= "10:00:00"><br>
+		<button name="updateDiveButton">Update Dive</button>
+		
+	</form> -->
+	
+	
+
+
+	<form name="newDivingLog">
+		<label><strong>Insert a new dive!</strong></label><br>
+		<label for = "siteName">Site Name</label>
+		<input type="text" name="siteName" placeholder= "Site Name">  <br>
+		<label for = "siteLocation">Site Location</label>
+		<input type="text" name="siteLocation" placeholder= "Site Location"> <br>
+		<label for = "date">Date</label>
+		<input type="date" name="date" placeholder= "2022-08-23"><br>
+		<label for = "visibilty">Visibility</label>
+		<input type="text" name="visibility" placeholder= "Visibility"><br>
+		<label for = "diveStart">Dive Start</label>
+		<input type="time" name="diveStart" placeholder= "10:00:00"><br>
+		<label for = "diveEnd">Dive End</label>
+		<input type="time" name="diveEnd" placeholder= "10:00:00"><br>
+		<button name="addDiveButton">Add Dive</button>
+	</form>
+	
+	
+	
 </body>
 </html>

@@ -1,7 +1,8 @@
 package com.skilldistillery.dory.entities;
 
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -25,7 +26,12 @@ public class DivingLog {
 	@Column(name = "site_location")
 	private String siteLocation;
 	
-	private Date date;
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	private LocalDate date;
 	
 	@Column(name = "max_depth")
 	private Double maxDepth;
@@ -33,13 +39,13 @@ public class DivingLog {
 	private String visibility;
 	
 	@Column(name = "dive_start")
-	private Time diveStart;
+	private LocalTime diveStart;
 	
 	@Column(name = "dive_end")
-	private Time diveEnd;
+	private LocalTime diveEnd;
 	
-	@Column(name = "total_time")
-	private Time totalTime;
+	//@Column(name = "total_time")
+	//private Time totalTime;
 	
 	@Column(name = "weight_amount")
 	private Double weightAmount;
@@ -59,8 +65,10 @@ public class DivingLog {
 		super();
 	}
 
-	public DivingLog(int id, String siteName, String siteLocation, Date date, Double maxDepth, String visibility,
-			Time diveStart, Time diveEnd, Time totalTime, Double weightAmount, Boolean safetyStop, Double waterTemp,
+
+
+	public DivingLog(int id, String siteName, String siteLocation, LocalDate date, Double maxDepth, String visibility,
+			LocalTime diveStart, LocalTime diveEnd, Double weightAmount, Boolean safetyStop, Double waterTemp,
 			String notes, String imageUrl) {
 		super();
 		this.id = id;
@@ -71,12 +79,19 @@ public class DivingLog {
 		this.visibility = visibility;
 		this.diveStart = diveStart;
 		this.diveEnd = diveEnd;
-		this.totalTime = totalTime;
 		this.weightAmount = weightAmount;
 		this.safetyStop = safetyStop;
 		this.waterTemp = waterTemp;
 		this.notes = notes;
 		this.imageUrl = imageUrl;
+	}
+
+	public void setDiveStart(LocalTime diveStart) {
+		this.diveStart = diveStart;
+	}
+
+	public void setDiveEnd(LocalTime diveEnd) {
+		this.diveEnd = diveEnd;
 	}
 
 	public int getId() {
@@ -103,14 +118,6 @@ public class DivingLog {
 		this.siteLocation = siteLocation;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	public Double getMaxDepth() {
 		return maxDepth;
 	}
@@ -118,6 +125,12 @@ public class DivingLog {
 	public void setMaxDepth(Double maxDepth) {
 		this.maxDepth = maxDepth;
 	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+
 
 	public String getVisibility() {
 		return visibility;
@@ -127,29 +140,8 @@ public class DivingLog {
 		this.visibility = visibility;
 	}
 
-	public Time getDiveStart() {
-		return diveStart;
-	}
 
-	public void setDiveStart(Time diveStart) {
-		this.diveStart = diveStart;
-	}
-
-	public Time getDiveEnd() {
-		return diveEnd;
-	}
-
-	public void setDiveEnd(Time diveEnd) {
-		this.diveEnd = diveEnd;
-	}
-
-	public Time getTotalTime() {
-		return totalTime;
-	}
-
-	public void setTotalTime(Time totalTime) {
-		this.totalTime = totalTime;
-	}
+	
 
 	public Double getWeightAmount() {
 		return weightAmount;
@@ -195,9 +187,21 @@ public class DivingLog {
 	public String toString() {
 		return "DivingLog [id=" + id + ", siteName=" + siteName + ", siteLocation=" + siteLocation + ", date=" + date
 				+ ", maxDepth=" + maxDepth + ", visibility=" + visibility + ", diveStart=" + diveStart + ", diveEnd="
-				+ diveEnd + ", totalTime=" + totalTime + ", weightAmount=" + weightAmount + ", safetyStop=" + safetyStop
+				+ diveEnd + ", weightAmount=" + weightAmount + ", safetyStop=" + safetyStop
 				+ ", waterTemp=" + waterTemp + ", notes=" + notes + ", imageUrl=" + imageUrl + "]";
 	}
+
+	public LocalTime getDiveStart() {
+		return diveStart;
+	}
+
+
+
+	public LocalTime getDiveEnd() {
+		return diveEnd;
+	}
+
+
 
 	@Override
 	public int hashCode() {
