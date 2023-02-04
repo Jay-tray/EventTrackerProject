@@ -1,0 +1,160 @@
+<div id="wrapper" class="wrapper">
+
+  <div class="welcome">
+    <h1>Welcome to Dory</h1>
+    <p>We keep track of your dives so you can focus on adventure</p>
+    <p>You have {{ getNumberofDives() }} dives logged!</p>
+  </div>
+
+  <p>Log Dive Index</p>
+  <div *ngIf="!selected">
+    <table>
+      <thead>
+        <th>Site Name</th>
+        <th>Site Location</th>
+        <th>Dive Date</th>
+        <th>Visibility</th>
+        <th>Dive Start</th>
+        <th>Dive End</th>
+        <th>Delete</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td (click)="displayLog(log)">{{ log.siteName }}</td>
+          <td (click)="displayLog(log)">{{ log.siteLocation }}</td>
+          <td>{{ log.date | date : "shortDate" }}</td>
+          <td>{{ log.visibility }}</td>
+          <td>{{ log.diveStart }}</td>
+          <td>{{ log.diveEnd }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteLog(log.id)"
+            >
+              X
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="selected">
+    <p>{{ selected.id }}</p>
+    <p>{{ selected.siteName }}</p>
+    <p>{{ selected.siteLocation }}</p>
+    <p>{{ selected.date }}</p>
+    <p>{{ selected.visibility }}</p>
+    <p>{{ selected.diveStart }}</p>
+    <p>{{ selected.diveEnd }}</p>
+    <button class="btn btn-primary" (click)="setEditDivingLog()">Edit</button>
+    <button class="btn btn-primary" (click)="displayTable()">Back</button>
+  </div>
+
+  <!-- Edit Dive Form -->
+  <div id="editDivingLog" *ngIf="editDivingLog">
+    <form>
+      <label class="form-label" for="siteName">Site Name:</label>
+      <input
+        type="text"
+        name="editDivingLog.siteName"
+        [(ngModel)]="editDivingLog.siteName"
+      />
+      <label class="form-label" for="siteLocation">Site Location:</label>
+      <input
+        type="text"
+        name="editDivingLog.siteLocation"
+        [(ngModel)]="editDivingLog.siteLocation"
+      />
+      <label class="form-label" for="date">Date:</label>
+      <input
+        type="date"
+        name="editDivingLog.date"
+        [(ngModel)]="editDivingLog.date"
+      />
+      <label class="form-label" for="visibility">Visibility:</label>
+      <input
+        type="text"
+        name="editDivingLog.visibility"
+        [(ngModel)]="editDivingLog.visibility"
+      />
+      <label class="form-label" for="diveStart">Dive Start:</label>
+      <input
+        type="time"
+        name="editDivingLog.diveStart"
+        [(ngModel)]="editDivingLog.diveStart"
+      />
+      <label class="form-label" for="diveEnd">Dive End:</label>
+      <input
+        type="time"
+        name="editDivingLog.diveEnd"
+        [(ngModel)]="editDivingLog.diveEnd"
+      />
+      <br />
+      <button class="btn btn-success" (click)="updateDivingLog(editDivingLog)">
+        Save
+      </button>
+      <button class="btn btn-danger" (click)="editDivingLog = null">
+        Cancel
+      </button>
+    </form>
+  </div>
+  <br />
+  <br />
+  <!-- Add new dive form -->
+  <form name="newTask" *ngIf="newDivingLog">
+    <h3>Add a new dive!</h3>
+    <label class="form-label" for="siteName">Site Name:</label>
+    <input
+      type="text"
+      name="newDivingLog.siteName"
+      [(ngModel)]="newDivingLog.siteName"
+    /><br />
+    <label class="form-label" for="siteLocation">Site Location:</label>
+    <input
+      type="text"
+      name="newDivingLog.siteLocation"
+      [(ngModel)]="newDivingLog.siteLocation"
+    /><br />
+    <label class="form-label" for="date">Date:</label>
+    <input
+      type="date"
+      name="newDivingLog.date"
+      [(ngModel)]="newDivingLog.date"
+    /><br />
+    <label class="form-label" for="visibility">Visibility:</label>
+    <input
+      type="text"
+      name="newDivingLog.visibility"
+      [(ngModel)]="newDivingLog.visibility"
+    /><br />
+    <label class="form-label" for="diveStart">Dive Start:</label>
+    <input
+      type="time"
+      name="newDivingLog.diveStart"
+      [(ngModel)]="newDivingLog.diveStart"
+    /><br />
+    <label class="form-label" for="diveEnd">Dive End:</label>
+    <input
+      type="time"
+      name="newDivingLog.diveEnd"
+      [(ngModel)]="newDivingLog.diveEnd"
+    /><br />
+    <button class="btn btn-primary" (click)="addLog(newDivingLog)">
+      Add a dive!
+    </button>
+  </form>
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Lobster"
+    rel="stylesheet"
+  />
+
+  <p class="main-text"><u></u></p>
+  <div class="bubble small"></div>
+  <div class="bubble s-medium"></div>
+  <div class="bubble medium"></div>
+  <div class="bubble large"></div>
+  <div class="bubble small-l"></div>
+</div>
