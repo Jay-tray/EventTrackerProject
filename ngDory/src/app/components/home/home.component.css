@@ -1,6 +1,79 @@
 .welcome {
 text-align: center;
-background-image: url("https://www.captainmorgans.com/wp-content/uploads/2013/10/scuba-diving-banner.jpg");
-max-width: 100%;
-height: 500px;
+background-image: url("https://i.pinimg.com/originals/da/97/75/da9775df875f2eb221361ba1b55d685b.jpg");
+max-width: auto;
+height: 1000px;
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+
 }
+
+.welcomeMessage {
+padding-top: 320px;
+color: rgba(255, 253, 246, 0.88);
+font-size: large;
+font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  width: auto;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th,
+td {
+  padding: 15px;
+  background-color: rgba(77, 178, 187, 0.398);
+  color: rgb(6, 5, 5);
+}
+
+th {
+  text-align: left;
+}
+
+thead,
+  th {
+    background-color: #4bbfda;
+
+  }
+
+.divelist{
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: xx-large;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: antiquewhite;
+}
+/* tbody {
+  tr {
+    :hover {
+      background-color: rgba(255,255,255,0.3);
+    }
+  }
+  td {
+    position: relative;
+    &:hover {
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -9999px;
+        bottom: -9999px;
+        background-color: rgba(255,255,255,0.2);
+        z-index: -1;
+      }
+    }
+  }
+} */

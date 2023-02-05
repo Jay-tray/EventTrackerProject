@@ -8,11 +8,13 @@ import { AppComponent } from './app.component';
 import { DatePipe } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    AppComponent
+    AppComponent,
+    NavigationComponent
 ],
   imports: [
     BrowserModule,

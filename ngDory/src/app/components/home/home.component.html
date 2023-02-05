@@ -1,24 +1,30 @@
 <div id="wrapper" class="wrapper">
 
   <div class="welcome">
+    <div class="welcomeMessage">
     <h1>Welcome to Dory</h1>
-    <p>We keep track of your dives so you can focus on adventure</p>
-    <p>You have {{ getNumberofDives() }} dives logged!</p>
+    <p>Leave the details to us and just keep swimming </p>
+    <p>You have <a href="#divelist"><strong>{{ getNumberofDives() }}</strong></a> dives logged!</p>
+    </div>
   </div>
 
-  <p>Log Dive Index</p>
-  <div *ngIf="!selected">
+
+
+  <div class="container" *ngIf="!selected">
+    <h2 class="divelist" id = "divelist">Dive List</h2>
     <table>
       <thead>
-        <th>Site Name</th>
+        <tr>
+         <th>Site Name</th>
         <th>Site Location</th>
         <th>Dive Date</th>
         <th>Visibility</th>
         <th>Dive Start</th>
         <th>Dive End</th>
         <th>Delete</th>
+      </tr>
       </thead>
-      <tbody>
+      <tbody class="scrolling-box">
         <tr *ngFor="let log of logs">
           <td (click)="displayLog(log)">{{ log.siteName }}</td>
           <td (click)="displayLog(log)">{{ log.siteLocation }}</td>
@@ -29,7 +35,7 @@
           <td>
             <button
               type="button"
-              class="btn btn-danger"
+              class="btn btn-info"
               (click)="deleteLog(log.id)"
             >
               X
@@ -40,16 +46,35 @@
     </table>
   </div>
 
-  <div *ngIf="selected">
-    <p>{{ selected.id }}</p>
-    <p>{{ selected.siteName }}</p>
-    <p>{{ selected.siteLocation }}</p>
-    <p>{{ selected.date }}</p>
-    <p>{{ selected.visibility }}</p>
-    <p>{{ selected.diveStart }}</p>
-    <p>{{ selected.diveEnd }}</p>
-    <button class="btn btn-primary" (click)="setEditDivingLog()">Edit</button>
-    <button class="btn btn-primary" (click)="displayTable()">Back</button>
+
+
+  <div class="container" *ngIf="selected">
+    <table>
+      <thead>
+       <tr>
+        <th>Site ID:</th>
+      <th>Site Name</th>
+     <th>Site Location</th>
+     <th>Dive Date</th>
+     <th>Visibility</th>
+     <th>Dive Start</th>
+     <th>Dive End</th>
+
+   </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <td>{{ selected.id }}</td>
+    <td>{{ selected.siteName }}</td>
+    <td>{{ selected.siteLocation }}</td>
+    <td>{{ selected.date | date : "shortDate"}}</td>
+    <td>{{ selected.visibility }}</td>
+    <td>{{ selected.diveStart }}</td>
+    <td>{{ selected.diveEnd }}</td><br>
+
+  </tr>
+  <button class="btn btn-primary" (click)="setEditDivingLog()">Edit</button>
+  <button class="btn btn-primary" (click)="displayTable()">Back</button></tbody></table>
   </div>
 
   <!-- Edit Dive Form -->
@@ -103,38 +128,27 @@
   <br />
   <br />
   <!-- Add new dive form -->
-  <form name="newTask" *ngIf="newDivingLog">
-    <h3>Add a new dive!</h3>
-    <label class="form-label" for="siteName">Site Name:</label>
-    <input
-      type="text"
-      name="newDivingLog.siteName"
-      [(ngModel)]="newDivingLog.siteName"
-    /><br />
-    <label class="form-label" for="siteLocation">Site Location:</label>
-    <input
-      type="text"
-      name="newDivingLog.siteLocation"
-      [(ngModel)]="newDivingLog.siteLocation"
-    /><br />
-    <label class="form-label" for="date">Date:</label>
-    <input
-      type="date"
-      name="newDivingLog.date"
-      [(ngModel)]="newDivingLog.date"
-    /><br />
-    <label class="form-label" for="visibility">Visibility:</label>
-    <input
-      type="text"
-      name="newDivingLog.visibility"
-      [(ngModel)]="newDivingLog.visibility"
-    /><br />
-    <label class="form-label" for="diveStart">Dive Start:</label>
+
+  <h3 class="divelist">Add a new dive!</h3>
+  <div name="newTask"  *ngIf="newDivingLog">
+
+    <div class="row h-100 justify-content-center align-items-center">
+    <div class="col px-md-40" id="form-wrapper" style="max-width: 750px; margin: 100px; float: left; border: 3px solid #0ab5be; padding: 40px; background-color:  rgba(77, 178, 187, 0.398)">
+
+      <label class="form-label" for="siteName">Site Name:</label>
+      <input type="text" name="newDivingLog.siteName" [(ngModel)]="newDivingLog.siteName"/>
+      <label class="form-label" for="siteLocation">Site Location:</label>
+      <input type="text" name="newDivingLog.siteLocation" [(ngModel)]="newDivingLog.siteLocation"/><br>
+      <label class="form-label" for="date">Date:</label>
+      <input type="date" name="newDivingLog.date"[(ngModel)]="newDivingLog.date"/>
+      <label class="form-label" for="visibility">Visibility:</label>
+      <input type="text" name="newDivingLog.visibility" [(ngModel)]="newDivingLog.visibility"/><br>
+      <label class="form-label" for="diveStart">Dive Start:</label>
     <input
       type="time"
       name="newDivingLog.diveStart"
       [(ngModel)]="newDivingLog.diveStart"
-    /><br />
+    />
     <label class="form-label" for="diveEnd">Dive End:</label>
     <input
       type="time"
@@ -144,17 +158,6 @@
     <button class="btn btn-primary" (click)="addLog(newDivingLog)">
       Add a dive!
     </button>
-  </form>
-
-  <link
-    href="https://fonts.googleapis.com/css?family=Lobster"
-    rel="stylesheet"
-  />
-
-  <p class="main-text"><u></u></p>
-  <div class="bubble small"></div>
-  <div class="bubble s-medium"></div>
-  <div class="bubble medium"></div>
-  <div class="bubble large"></div>
-  <div class="bubble small-l"></div>
-</div>
+    </div>
+  </div>
+  </div>
